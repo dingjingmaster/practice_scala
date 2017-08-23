@@ -1,0 +1,49 @@
+''''  scala 基础
+对象        ---   属性和方法
+类          ---   对象的抽象
+方法        ---   描述行为
+字段        ---   对象的属性通过字段赋值
+
+''''' scala 规则
+区分大小写
+类名        ---   第一个字母要大写
+方法名      ---   方法名第一个字母要小写
+文件名      ---   文件名要与对象名完全匹配, 扩展名是 .scala
+程序入口    ---   def main(args: Array[String])
+
+''''' 关键字:
+
+''''' scala包:
+定义包      ---   package com.xxx
+引入包      ---   import com.xxx
+            ---   import com._ 引入包中所有成员
+重命名成员  ---   import java,util.(HashMap => JavaHashMap)
+隐藏成员    ---   import java.util.(HashMap => _, _)  除了HashMap 被隐藏，其它都引入
+
+''''' scala数据类型
+Byte        ---   8位有符号 补码整数
+Short       ---   16位有符号
+Int         ---   32位有符号
+Long        ---   64位有符号
+Float       ---   32位单精度
+Double      ---   64位双精度
+Char        ---   16位无符号 Unicode 字符
+
+String      ---   字符串
+Boolean
+Unit        ---   表示无值，相当于void，也表示不返回任意数据。只有一个实例: ()
+Null        ---   Null或空引用
+Nothing     ---   scala类层级的最低端，是任何其他类型的子类型
+Any         ---   scala所有其他类的超类
+AnyRef      ---   scala中所有引用类的基类
+
+''''' scala变量
+变量        ---   var关键字声明变量,指明类型可以不用初始化，否则必须初始化
+val a : String = "test"
+
+''''' scala访问修饰符
+private
+protected
+public      ---   默认
+作用域保护  ---   private[x], x指某个所属的包、类、单例对象。表示除了x中的类、包、半生对象外其他都是private
+private[类或者包] class className {}
