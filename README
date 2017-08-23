@@ -1,49 +1,177 @@
-''''  scala 基础
-对象        ---   属性和方法
-类          ---   对象的抽象
-方法        ---   描述行为
-字段        ---   对象的属性通过字段赋值
+> scala 基础
+    对象        ---   属性和方法
+    类          ---   对象的抽象
+    方法        ---   描述行为
+    字段        ---   对象的属性通过字段赋值
 
-''''' scala 规则
-区分大小写
-类名        ---   第一个字母要大写
-方法名      ---   方法名第一个字母要小写
-文件名      ---   文件名要与对象名完全匹配, 扩展名是 .scala
-程序入口    ---   def main(args: Array[String])
+> scala 规则
+    区分大小写
+    类名        ---   第一个字母要大写
+    方法名      ---   方法名第一个字母要小写
+    文件名      ---   文件名要与对象名完全匹配, 扩展名是 .scala
+    程序入口    ---   def main(args: Array[String])
 
-''''' 关键字:
+> 关键字:
 
-''''' scala包:
-定义包      ---   package com.xxx
-引入包      ---   import com.xxx
-            ---   import com._ 引入包中所有成员
-重命名成员  ---   import java,util.(HashMap => JavaHashMap)
-隐藏成员    ---   import java.util.(HashMap => _, _)  除了HashMap 被隐藏，其它都引入
+> scala包:
+    定义包      ---   package com.xxx
+    引入包      ---   import com.xxx
+                ---   import com._ 引入包中所有成员
+    重命名成员  ---   import java,util.(HashMap => JavaHashMap)
+    隐藏成员    ---   import java.util.(HashMap => _, _)  除了HashMap 被隐藏，其它都引入
 
-''''' scala数据类型
-Byte        ---   8位有符号 补码整数
-Short       ---   16位有符号
-Int         ---   32位有符号
-Long        ---   64位有符号
-Float       ---   32位单精度
-Double      ---   64位双精度
-Char        ---   16位无符号 Unicode 字符
+> scala数据类型
+    Byte        ---   8位有符号 补码整数
+    Short       ---   16位有符号
+    Int         ---   32位有符号
+    Long        ---   64位有符号
+    Float       ---   32位单精度
+    Double      ---   64位双精度
+    Char        ---   16位无符号 Unicode 字符
 
-String      ---   字符串
-Boolean
-Unit        ---   表示无值，相当于void，也表示不返回任意数据。只有一个实例: ()
-Null        ---   Null或空引用
-Nothing     ---   scala类层级的最低端，是任何其他类型的子类型
-Any         ---   scala所有其他类的超类
-AnyRef      ---   scala中所有引用类的基类
+    String      ---   字符串
+    Boolean
+    Unit        ---   表示无值，相当于void，也表示不返回任意数据。只有一个实例: ()
+    Null        ---   Null或空引用
+    Nothing     ---   scala类层级的最低端，是任何其他类型的子类型
+    Any         ---   scala所有其他类的超类
+    AnyRef      ---   scala中所有引用类的基类
 
-''''' scala变量
-变量        ---   var关键字声明变量,指明类型可以不用初始化，否则必须初始化
-val a : String = "test"
+> scala变量
+    变量        ---   var关键字声明变量,指明类型可以不用初始化，否则必须初始化
+        val a : String = "test"
 
-''''' scala访问修饰符
-private
-protected
-public      ---   默认
-作用域保护  ---   private[x], x指某个所属的包、类、单例对象。表示除了x中的类、包、半生对象外其他都是private
-private[类或者包] class className {}
+> scala访问修饰符
+    private
+    protected
+    public      ---   默认
+    作用域保护  ---   private[x], x指某个所属的包、类、单例对象。表示除了x中的类、包、半生对象外其他都是private
+    private[类或者包] class className {}
+
+> 运算符
+    算术运算符
+    关系运算符
+    逻辑运算符
+    位运算符
+    赋值运算符
+
+> 条件语句
+    if else
+
+> 循环语句
+    while
+    do...while
+    for
+
+> 函数 <核心>
+    函数声明    ---   def functionName (参数列表) : [return type] 不写等于号和方法主体就相当于是抽象(abstract)方法
+    函数定义    ---   def functionName (参数列表) : [返回值类型] = {}
+    函数调用    ---   [实例.]function (参数列表)
+
+> 闭包
+    闭包是一个函数，返回值依赖于声明在函数外部的一个或多个变量
+    闭包一般来讲就是可以访问一个函数里面局部变量的另一个函数
+    {    
+        var f = 3
+        val a = (i : Int) => i * f
+    }
+    当a被调用的时候， i 被赋予一个新值， f不是形参，而是自由变量，这个变量定义在外边，这样定义的函数变量 a 成为一个闭包，
+    因为它引用到函数外面定义的变量，定义这个函数的过程是将这个自由变量捕获而构成一个封闭的函数
+    {
+        object Test {
+            def main(args : Array[String]) {
+                println ("a(1) value = " + a(1));
+                println ("a(2) value = " + a(2));
+            }
+
+            var f = 3
+            val a = (i : Int) => i * f
+        }
+        输出结果为 : 3 , 6
+    }
+
+> 匿名函数
+    val a = (i : Int) => i * 10
+
+> scala字符串
+> scala数组
+    声明数组
+            var z:Array[String] = new Array[String](3)
+        或
+            var z = new Array[String](3)
+        或
+            var z = Array("aaa", "bbb", "ccc")
+    赋值
+        z(0) = "aaa";
+        z(1) = "bbb"
+    多维数组
+        var a = ofDim[Int](3,3)   // 二维数组
+    合并数组
+        concat() 可以合并两个数组
+        {
+            import Array._
+
+            object Test {
+                def main(args: Array[String]) {
+                    var myList1 = Array(1, 2, 3, 4)
+                    var myList2 = Array(8, 9, 10, 11)
+
+                    var myList3 = concat(myList1, myList2)
+
+                    // 输出所有数组元素
+                    for (x <- myList3) {
+                        println(x)
+                    }
+                }
+            }
+        }
+    创建区间数组
+        range() 形成一个区间范围内的数组， range() 最后一个参数是步长。默认为 1
+    
+    数组的方法
+
+> scala集合(Collection)
+    list
+    set
+    map
+    元组
+    option
+    iterator
+> scala iterstor(迭代器)
+
+> scala 类
+
+> scala 单例对象 object
+    scala中没有static
+    scala中使用单例模式，除了定义一个类外，还要定义一个同名的 object 对象
+
+> scala Trait (特征)
+
+> scala 模式匹配 (对应于 swatch case) 只要发现一个 case 匹配，就不再匹配其它 case
+    模式匹配包含一系列备选项，每一个都起始于 scala => 隔开模式和表达式
+    object Test {
+        def main(args: Array[String]) {
+            println(matchTest(3))
+        }
+
+        def matchTest(x: Int) : String = x match {
+            case 1 => "one"
+            case 2 => "two"
+            case _ => "many"
+        }
+    }
+
+> scala 正则表达式
+
+> scala 异常处理
+
+> 提取器(extractor)
+    提取器是从传递给的对象中提取出构造该对象的参数
+    scala 标准库包含了一些预定义的提取器
+    scala 提取器是一个带有 unapply 方法的对象
+
+> scala 文件 I/O
+
+
+
+
